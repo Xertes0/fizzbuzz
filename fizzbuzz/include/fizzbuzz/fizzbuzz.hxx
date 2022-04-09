@@ -40,6 +40,9 @@ public:
 
 };
 
-using fizzbuzz = basic_fizzbuzz<int, return_value, standard::parser_3, standard::parser_5>;
+template<class... Parsers>
+using standard_fizzbuzz = basic_fizzbuzz<int, return_value, Parsers...>;
+
+using fizzbuzz = standard_fizzbuzz<standard::parser_3, standard::parser_5>;
 
 } // namespace fizzbuzz
