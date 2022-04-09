@@ -41,10 +41,21 @@ public:
     }
   }
 
-};
+  template<class OutputIt>
+  static
+  constexpr
+  void
+  parse(number_t const& number, OutputIt& output_it) noexcept
+  {
+    parser_return_t parsed[] = {(parser_handler<Parsers>::parse(number))...};
 
-//template<class... Parsers>
-//using fizz_buzz_parser = basic_fizz_buzz_parser<int, basic_fizz_buzz_return_value<std::string_view>, fizz_buzz_parse_return, Parsers...>;
-//using fizz_buzz_parser = basic_fizz_buzz_parser<int, basic_fizz_buzz_return_value<std::string_view>, basic_fizz_buzz_parse_return<std::string_view>, Parsers...>;
+    for(auto const& val : parsed) {
+      if(val.hit()) {
+        *output_it++ = val.get();
+      }
+    }
+  }
+
+};
 
 } // namespace fizzbuzz

@@ -30,6 +30,14 @@ public:
     return parser_t::parse(num);
   }
 
+  template<class OutputIt>
+  constexpr
+  void
+  operator()(number_t const& num, OutputIt&& output_it) noexcept
+  {
+    parser_t::parse(num, output_it);
+  }
+
 };
 
 using fizzbuzz = basic_fizzbuzz<int, return_value, standard::parser_3, standard::parser_5>;
