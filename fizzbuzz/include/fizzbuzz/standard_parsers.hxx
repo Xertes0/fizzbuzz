@@ -1,6 +1,6 @@
 #pragma once
 
-#include "fizz_buzz_parse_return.hxx"
+#include "parser_return.hxx"
 
 namespace fizzbuzz
 {
@@ -52,8 +52,8 @@ public:
 
 };
 
-using parser_3 = basic_parser_3<int, fizz_buzz_parse_return>;
-using parser_5 = basic_parser_5<int, fizz_buzz_parse_return>;
+using parser_3 = basic_parser_3<int, parser_return>;
+using parser_5 = basic_parser_5<int, parser_return>;
 
 } // namesapce fizzbuzz::standard
 

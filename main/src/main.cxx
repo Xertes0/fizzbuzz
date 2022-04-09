@@ -1,11 +1,10 @@
-#include "fizz_buzz/fizz_buzz.hxx"
-
+#include <fizzbuzz/fizzbuzz.hxx>
 #include <iostream>
 
 int
 main()
 {
-  fizzbuzz::fizz_buzz fz{};
+  fizzbuzz::fizzbuzz fz{};
 
   int in;
   std::cin >> in;

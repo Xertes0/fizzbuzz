@@ -1,32 +1,14 @@
 #pragma once
 
-#include "fizz_buzz_parse_return.hxx"
-#include "fizz_buzz_return_value.hxx"
+#include "parser_return.hxx"
+#include "return_value.hxx"
+#include "parser_handler.hxx"
 
 namespace fizzbuzz
 {
 
-template<class Number, class Parser, class ParserReturn>
-class basic_fizz_buzz_parse_handler
-{
-public:
-  using number_t = Number;
-  using parser_t = Parser;
-  using parser_return_t = ParserReturn;
-
-  [[nodiscard]]
-  static
-  constexpr
-  parser_return_t
-  //basic_fizz_buzz_parse_return<std::string_view>
-  parse(number_t const& number) noexcept
-  {
-    return parser_t::parse(number);
-  }
-};
-
 template<class Number, class Return, class ParserReturn, class... Parsers>
-class basic_fizz_buzz_parser
+class basic_parser
 {
 public:
   using number_t = Number;
@@ -34,7 +16,7 @@ public:
   using parser_return_t = ParserReturn;
 
   template<class Parser>
-  using fizz_buzz_parse_handler = basic_fizz_buzz_parse_handler<number_t, Parser, parser_return_t>;
+  using parser_handler = basic_parser_handler<number_t, Parser, parser_return_t>;
 
   [[nodiscard]]
   static
@@ -42,7 +24,7 @@ public:
   return_t
   parse(number_t const& number) noexcept
   {
-    parser_return_t parsed[] = {(fizz_buzz_parse_handler<Parsers>::parse(number))...};
+    parser_return_t parsed[] = {(parser_handler<Parsers>::parse(number))...};
     for(auto const val : parsed) {
       if(val.hit()) {
         return return_t{val.get()};

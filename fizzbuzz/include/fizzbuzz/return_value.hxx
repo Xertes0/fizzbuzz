@@ -7,7 +7,7 @@ namespace fizzbuzz
 {
 
 template<class Inner>
-class basic_fizz_buzz_return_value
+class basic_return_value
 {
 public:
   using inner_t = Inner;
@@ -15,13 +15,13 @@ public:
   [[nodiscard]]
   explicit
   constexpr
-  basic_fizz_buzz_return_value(std::nullopt_t = std::nullopt) noexcept :
+  basic_return_value(std::nullopt_t = std::nullopt) noexcept :
     value_{std::nullopt} {}
 
   [[nodiscard]]
   explicit
   constexpr
-  basic_fizz_buzz_return_value(inner_t val) noexcept :
+  basic_return_value(inner_t val) noexcept :
     value_{std::move(val)} {}
 
   [[nodiscard]]
@@ -56,6 +56,6 @@ private:
   std::optional<inner_t> const value_;
 };
 
-using fizz_buzz_return_value = basic_fizz_buzz_return_value<std::string_view>;
+using return_value = basic_return_value<std::string_view>;
 
 } // namespace fizzbuzz

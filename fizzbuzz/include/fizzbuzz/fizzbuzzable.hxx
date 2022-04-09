@@ -6,7 +6,12 @@
 namespace fizzbuzz
 {
 
+namespace concepts
+{
+
 template<class T>
-concept fizz_buzzable = std::is_integral<T>::value;
+concept fizzbuzzable = std::is_integral<T>::value;
+
+} // namespace fizzbuzz::concepts
 
 } // namespace fizzbuzz

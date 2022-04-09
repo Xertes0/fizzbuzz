@@ -8,7 +8,7 @@ namespace fizzbuzz
 {
 
 template<class Return>
-class basic_fizz_buzz_parse_return
+class basic_parser_return
 {
 public:
   using return_t = Return;
@@ -17,13 +17,13 @@ public:
   [[nodiscard]]
   explicit
   constexpr
-  basic_fizz_buzz_parse_return(std::nullopt_t = std::nullopt) noexcept :
+  basic_parser_return(std::nullopt_t = std::nullopt) noexcept :
     value_{std::nullopt} {}
 
   [[nodiscard]]
   explicit
   constexpr
-  basic_fizz_buzz_parse_return(return_t ret) noexcept :
+  basic_parser_return(return_t ret) noexcept :
     value_{std::move(ret)} {}
 
   [[nodiscard]]
@@ -46,6 +46,6 @@ private:
   std::optional<Return> value_;
 };
 
-using fizz_buzz_parse_return = basic_fizz_buzz_parse_return<std::string_view>;
+using parser_return = basic_parser_return<std::string_view>;
 
 } // namespace fizzbuzz
