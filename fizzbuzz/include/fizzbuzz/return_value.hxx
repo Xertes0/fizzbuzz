@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <optional>
+#include <vector>
 
 namespace fizzbuzz
 {
@@ -21,7 +22,7 @@ public:
   [[nodiscard]]
   explicit
   constexpr
-  basic_return_value(inner_t val) noexcept :
+  basic_return_value(std::vector<inner_t> val) noexcept :
     value_{std::move(val)} {}
 
   [[nodiscard]]
@@ -42,18 +43,14 @@ public:
 
   [[nodiscard]]
   constexpr
-  inner_t
-  get_or_default() noexcept
+  std::vector<inner_t> const&
+  get() noexcept
   {
-    if(value_.has_value()) {
-      return value_.value();
-    } else {
-      return inner_t{};
-    }
+    return value_.value();
   }
 
 private:
-  std::optional<inner_t> const value_;
+  std::optional<std::vector<inner_t>> const value_;
 };
 
 using return_value = basic_return_value<std::string_view>;

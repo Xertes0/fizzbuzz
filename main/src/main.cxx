@@ -8,7 +8,14 @@ main()
 
   int in;
   std::cin >> in;
-  std::cout << in << ": " << fz(in).get_or_default() << '\n';
+  auto ret = fz(in);
+  if(ret) {
+    std::cout << in << ":";
+    for(auto const& val : ret.get()) {
+      std::cout << " " << val;
+    }
+    std::cout << '\n';
+  }
 
   return 0;
 }

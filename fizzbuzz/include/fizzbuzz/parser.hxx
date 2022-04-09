@@ -25,13 +25,20 @@ public:
   parse(number_t const& number) noexcept
   {
     parser_return_t parsed[] = {(parser_handler<Parsers>::parse(number))...};
-    for(auto const val : parsed) {
+    std::vector<typename return_t::inner_t> hits{};
+    hits.reserve(sizeof...(Parsers));
+
+    for(auto const& val : parsed) {
       if(val.hit()) {
-        return return_t{val.get()};
+        hits.push_back(std::move(val.get()));
       }
     }
 
-    return return_t{};
+    if(hits.size() > 0) {
+      return return_t{hits};
+    } else {
+      return return_t{};
+    }
   }
 
 };
