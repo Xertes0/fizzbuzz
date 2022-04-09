@@ -15,7 +15,7 @@ public:
 
   using number_t = Number;
   using return_t = ReturnValue;
-  using parser_t = basic_parser<int, return_t, basic_parser_return<typename return_t::inner_t>, Parsers...>;
+  using parser_t = basic_parser<number_t, return_t, basic_parser_return<typename return_t::inner_t>, Parsers...>;
 
   [[nodiscard]]
   explicit
