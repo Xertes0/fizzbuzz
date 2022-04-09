@@ -19,7 +19,7 @@ public:
   static
   constexpr
   parse_return_t
-  parse(number_t const& number)
+  parse(number_t const& number) noexcept
   {
     if(number%3 == 0) {
       return parse_return_t{std::string_view{"Fizz"}};
@@ -41,7 +41,7 @@ public:
   static
   constexpr
   parse_return_t
-  parse(number_t const& number)
+  parse(number_t const& number) noexcept
   {
     if(number%5 == 0) {
       return parse_return_t{std::string_view{"Buzz"}};

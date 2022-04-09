@@ -13,7 +13,7 @@ public:
   static
   constexpr
   parse_return_t
-  parse(number_t const& number)
+  parse(number_t const& number) noexcept
   {
     if(number%6 == 2) {
       return parse_return_t{std::string_view{"custom_parser_hit"}};
